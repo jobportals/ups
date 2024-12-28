@@ -1,0 +1,374 @@
+<html><head><base href="." /><title>UPS Jobs </title>
+<style>
+body { 
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f0f2f5;
+}
+
+.navbar {
+  background: linear-gradient(135deg, #522d23 0%, #351C15 100%);
+  color: white;
+  padding: 1.8rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.logo {
+  height: 55px;
+  margin-right: 2rem;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+  transition: transform 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.main {
+  display: flex;
+  min-height: calc(100vh - 132px);
+  gap: 2.5rem;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
+}
+
+.content {
+  flex: 1;
+  padding: 0;
+}
+
+.job-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+  transition: transform 0.4s;
+}
+
+.job-card {
+  background: white;
+  margin-bottom: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  overflow: hidden;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  border: 1px solid rgba(0,0,0,0.03);
+  position: relative;
+  transform: translateY(0);
+}
+
+.job-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.job-card:hover .job-image {
+  transform: scale(1.08);
+}
+
+.job-content {
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.job-content h3 {
+  color: #351C15;
+  margin: 0 0 1.2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.notification-panel {
+  width: 380px;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  height: fit-content;
+}
+
+.notification {
+  padding: 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  background: #f8f9fa;
+  border-left: 5px solid #351C15;
+  transition: all 0.3s;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.notification:hover {
+  transform: translateX(8px);
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.search-box {
+  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: 600px;
+  border: 2px solid #e9ecef;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+  display: block;
+  margin: 0 auto 3rem;
+  background: white;
+}
+
+.search-box:focus {
+  outline: none;
+  border-color: #522d23;
+  box-shadow: 0 0 0 4px rgba(82,45,35,0.1);
+}
+
+.apply-btn {
+  background: linear-gradient(135deg, #522d23 0%, #351C15 100%);
+  color: white;
+  border: none;
+  padding: 1.5rem 2.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 80%;
+  margin: 2rem auto 0;
+  font-weight: 700;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.apply-btn:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #351C15 0%, #522d23 100%);
+  transition: all 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.apply-btn:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(82,45,35,0.3);
+  letter-spacing: 2px;
+}
+
+.apply-btn:hover:before {
+  width: 100%;
+}
+
+.apply-btn:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+  
+  .notification-panel {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #ddd;
+  }
+  
+  .content {
+    padding: 1rem;
+  }
+  
+  .navbar {
+    padding: 0.5rem;
+  }
+  
+  .navbar h1 {
+    font-size: 1.5rem;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .search-box {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+  
+  .job-card {
+    margin: 1rem 0;
+  }
+  
+  .job-content {
+    padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .job-card {
+    max-width: 800px;
+  }
+  
+  .content {
+    padding: 3rem;
+  }
+}
+
+.footer {
+  background: linear-gradient(135deg, #351C15 0%, #4a2820 100%);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.footer p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></head>
+<body>
+
+<nav class="navbar">
+  <svg class="logo" viewBox="0 0 100 50">
+    <rect x="10" y="10" width="80" height="30" fill="#351C15"/>
+    <text x="25" y="32" fill="white" font-size="20">UPS</text>
+  </svg>
+  <h1>UPS Jobs Available 2024 | 2025 </h1>
+</nav>
+
+<main class="main">
+  <div class="content">
+    <input type="text" class="search-box" placeholder="Search for jobs...">
+    
+    <div class="job-card">
+      <img src="https://i.kinja-img.com/image/upload/c_fit,q_60,w_645/f3f83765c7ccc7736519e8a7745d3012.jpg" alt="UPS delivery driver standing next to brown delivery truck, professional uniform" width="400" height="150" class="job-image">
+      <div class="job-content">
+        <h3>Package Delivery Driver</h3>
+        <p>Location: New York, NY</p>
+        <p>Full Time | $21-25/hr</p>
+        <a href="https://www.youtube.com/@FreelancerSumon_ma/videos" class="apply-btn">Apply Now</a>
+      </div>
+    </div>
+    
+    <div class="job-card">
+      <img src="https://media.smallbiztrends.com/2023/05/package-handler-job-description.png" alt="Modern warehouse interior with packages on conveyor belt, industrial setting" width="400" height="150" class="job-image">
+      <div class="job-content">
+        <h3>Warehouse Package Handler</h3>
+        <p>Location: Los Angeles, CA</p>
+        <p>Part Time | $18-22/hr</p>
+        <a href="https://www.youtube.com/@FreelancerSumon_ma/videos" class="apply-btn">Apply Now</a>
+      </div>
+    </div>
+    
+    <div class="job-card">
+      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0" alt="Professional supervisor in logistics center reviewing documents with team" width="400" height="150" class="job-image">
+      <div class="job-content">
+        <h3>Operations Supervisor</h3>
+        <p>Location: Chicago, IL</p>
+        <p>Full Time | Salary: $55,000-65,000</p>
+        <a href="https://www.youtube.com/@FreelancerSumon_ma/videos" class="apply-btn">Apply Now</a>
+      </div>
+    </div>
+  </div>
+  
+  <aside class="notification-panel">
+    <h3>Recent Applications</h3>
+    
+    <div class="notification">
+      <p><strong>John D.</strong> applied for Package Driver</p>
+      <small>2 minutes ago</small>
+    </div>
+    
+    <div class="notification">
+      <p><strong>Sarah M.</strong> applied for Warehouse Handler</p>
+      <small>15 minutes ago</small>
+    </div>
+    
+    <div class="notification">
+      <p><strong>Mike R.</strong> applied for Operations Supervisor</p>
+      <small>1 hour ago</small>
+    </div>
+  </aside>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2024 UPS Careers. All rights reserved.</p>
+</footer>
+
+<script>
+setInterval(() => {
+  const names = ['Alex', 'Maria', 'James', 'Emma', 'David'];
+  const jobs = ['Package Driver', 'Warehouse Handler', 'Operations Supervisor'];
+  const times = ['just now', '1 minute ago', '2 minutes ago'];
+  
+  const notification = document.createElement('div');
+  notification.className = 'notification';
+  
+  const randomName = names[Math.floor(Math.random() * names.length)];
+  const randomJob = jobs[Math.floor(Math.random() * jobs.length)];
+  const randomTime = times[Math.floor(Math.random() * times.length)];
+  
+  notification.innerHTML = `
+    <p><strong>${randomName}</strong> applied for ${randomJob}</p>
+    <small>${randomTime}</small>
+  `;
+  
+  const panel = document.querySelector('.notification-panel');
+  panel.insertBefore(notification, panel.firstChild);
+  
+  if (panel.children.length > 5) {
+    panel.removeChild(panel.lastChild);
+  }
+}, 5000);
+
+document.querySelector('.search-box').addEventListener('input', (e) => {
+  const searchTerm = e.target.value.toLowerCase();
+  const jobCards = document.querySelectorAll('.job-card');
+  
+  jobCards.forEach(card => {
+    const jobText = card.textContent.toLowerCase();
+    card.style.display = jobText.includes(searchTerm) ? 'block' : 'none';
+  });
+});
+
+// Remove the old button click handlers
+document.querySelectorAll('.apply-btn').forEach(btn => {
+  const jobTitle = btn.parentElement.querySelector('h3').textContent;
+  btn.addEventListener('click', (e) => {
+    alert(`Thank you for applying to ${jobTitle}! You will be redirected to complete your application.`);
+  });
+});
+
+</script>
+
+</body></html>
